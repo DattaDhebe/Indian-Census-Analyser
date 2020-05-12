@@ -42,6 +42,5 @@ public class CensusAnalyserTest {
                                             CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
 
-
     }
 }
