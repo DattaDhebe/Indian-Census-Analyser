@@ -8,7 +8,7 @@ public class CensusAnalyserException extends Exception {
     }
 
     enum ExceptionType {
-        CENSUS_FILE_PROBLEM, NO_CENSUS_DATA, WRONG_DELIMITER;
+        CENSUS_FILE_PROBLEM, NO_CENSUS_DATA, ERROR_IN_HEADER;
     }
 
     ExceptionType type;
