@@ -48,6 +48,16 @@ public class CensusAnalyserTest {
     }
 
     @Test
+    public void givenIndiaCensusData_WhenWrongDelimiter_shouldThrowCustomException() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(STATE_CSV_WRONG_DELIMITER);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM,e.type);
+        }
+    }
+
+    @Test
     public void givenIndiaCensusData_WithWrongHeader_ShouldThrowException() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
