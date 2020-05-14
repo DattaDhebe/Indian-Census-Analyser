@@ -58,7 +58,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusData_WithWrongHeader_ShouldThrowException() throws CensusAnalyserException {
+    public void givenIndiaCensusData_WithWrongHeader_ShouldThrowException() {
         try {
             censusAnalyser.loadIndiaStateData(STATE_CSV_WRONG_HEADER_CSV_FILE);
         } catch (CensusAnalyserException e) {
@@ -159,11 +159,9 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusPopulationData_SortedOnState_ShouldReturnCustomException() throws CensusAnalyserException {
+    public void givenIndiaCensusPopulationData_SortedOnState_ShouldReturnCustomException() {
         try {
             censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
-            String sortedCensusData = censusAnalyser.getPopulationWiseSortedCensusData();
-            IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
