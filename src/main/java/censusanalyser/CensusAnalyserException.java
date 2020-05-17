@@ -7,8 +7,11 @@ public class CensusAnalyserException extends Exception {
         this.type = ExceptionType.valueOf(name);
     }
 
-    enum ExceptionType {
-        CENSUS_FILE_PROBLEM, NO_CENSUS_DATA, ERROR_IN_HEADER;
+    public CensusAnalyserException(ExceptionType noFileFound, String file_not_found_in_path) {
+    }
+
+    public enum ExceptionType {
+        CENSUS_FILE_PROBLEM, NO_CENSUS_DATA, INCORRECT_DELIMITER_EXCEPTION, INCORRECT_DELIMITER_HEADER_EXCEPTION, NO_FILE_FOUND;
     }
 
     ExceptionType type;

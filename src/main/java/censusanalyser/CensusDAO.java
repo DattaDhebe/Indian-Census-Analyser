@@ -31,4 +31,7 @@ public class CensusDAO {
 
     public CensusDAO() {
     }
+
+    public CensusDAO(IndiaCensusCSV censusCSV) {
+    }
 }
