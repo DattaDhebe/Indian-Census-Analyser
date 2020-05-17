@@ -10,7 +10,7 @@ public class CensusDAO {
     public double totalArea;
     public double populationDensity;
 
-    public CensusDAO(IndiaCensusCSV indiaCensusCSV) {
+    public CensusDAO(CensusDAO indiaCensusCSV) {
         state = indiaCensusCSV.state;
         areaInSqKm = indiaCensusCSV.areaInSqKm;
         densityPerSqKm = indiaCensusCSV.densityPerSqKm;
@@ -29,5 +29,6 @@ public class CensusDAO {
         stateCode = usCensusCSV.stateId;
     }
 
-
+    public CensusDAO() {
+    }
 }
