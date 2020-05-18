@@ -1,5 +1,5 @@
 
-package censusanalyser;
+package com.censusanalyser;
 
 import java.io.IOException;
 import java.io.Reader;

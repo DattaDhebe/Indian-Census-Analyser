@@ -1,4 +1,4 @@
-package censusanalyser;
+package com.censusanalyser;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -23,11 +23,11 @@ public abstract class CensusAdapter {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<E> csvFileIterator = csvBuilder.getCSVFileIterator(reader,CensusCsvClass);
             Iterable<E> csvIterable = () -> csvFileIterator;
-            if(CensusCsvClass.getName().equals("class censusanalyser.CSVStateCensus")) {
+            if(CensusCsvClass.getName().equals("com.censusanalyser.CSVStateCensus")) {
                 StreamSupport.stream(csvIterable.spliterator(), false)
                         .map(IndiaCensusCSV.class::cast)
                         .forEach(censusCSV -> csvFileMap.put(censusCSV.state, new CensusDAO(censusCSV)));
-            } else if (CensusCsvClass.getName().equals("class censusanalyser.CSVUSCensus")){
+            } else if (CensusCsvClass.getName().equals("com.censusanalyser.CSVUSCensus")){
                 StreamSupport.stream(csvIterable.spliterator(), false)
                         .map(USCensusCSV.class::cast)
                         .forEach(censusCSV -> csvFileMap.put(censusCSV.state, new CensusDAO(censusCSV)));

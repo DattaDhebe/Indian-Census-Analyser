@@ -1,4 +1,4 @@
-package censusanalyser;
+package com.censusanalyser;
 
 import java.util.Map;
 

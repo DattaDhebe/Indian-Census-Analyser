@@ -1,4 +1,4 @@
-package censusanalyser;
+package com.censusanalyser;
 
 public class CensusDAO {
 
@@ -22,7 +22,7 @@ public class CensusDAO {
         population = USCensus.population;
         totalArea = USCensus.totalArea;
         populationDensity = USCensus.populationDensity;
-        stateCode = USCensus.stateId;
+        stateCode = USCensus.stateCode;
     }
 
     public IndiaCensusCSV getCSVStateCensus() {

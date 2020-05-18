@@ -1,4 +1,4 @@
-package censusanalyser;
+package com.censusanalyser;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;

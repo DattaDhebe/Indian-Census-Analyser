@@ -1,4 +1,4 @@
-package censusanalyser;
+package com.censusanalyser;
 
 import com.google.gson.Gson;
 
@@ -10,7 +10,7 @@ public class CensusAnalyser<E> {
     List<IndiaCensusCSV> censusList = null;
     List<IndiaStateCSV> codeCSVList=null;
 
-    Map<String, CensusDAO> csvFileMap = null;
+    Map<String, CensusDAO> csvFileMap;
     public enum Country{ INDIA, US }
     private Country country;
 
