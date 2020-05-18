@@ -11,24 +11,25 @@ import java.util.stream.StreamSupport;
 
 import static java.nio.file.Files.newBufferedReader;
 
-public abstract class CensusAdapter{
+public abstract class CensusAdapter {
 
-    public abstract Map<String, CensusDAO> loadCensusData(String... csvFilePath) throws CensusAnalyserException;
     Map<String,CensusDAO> csvFileMap = new HashMap<>();
 
-    public <E> Map<String, CensusDAO> loadCensusData(Class<E> CensusCsvClass, String csvFilePath)
+    public abstract Map<String, CensusDAO> loadCensusData(String... csvFilePath) throws CensusAnalyserException;
+
+    public <E> Map<String,CensusDAO> loadCensusData(Class<E> CensusCsvClass, String csvFilePath)
                                                     throws CensusAnalyserException {
         try (Reader reader = newBufferedReader(Paths.get(csvFilePath));) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<E> csvFileIterator = csvBuilder.getCSVFileIterator(reader,CensusCsvClass);
             Iterable<E> csvIterable = () -> csvFileIterator;
-            if(CensusCsvClass.getName().equals("censusanalyser.CSVStateCensus")) {
+            if(CensusCsvClass.getName().equals("class censusanalyser.CSVStateCensus")) {
                 StreamSupport.stream(csvIterable.spliterator(), false)
                         .map(IndiaCensusCSV.class::cast)
                         .forEach(censusCSV -> csvFileMap.put(censusCSV.state, new CensusDAO(censusCSV)));
-            } else if (CensusCsvClass.getName().equals("censusanalyser.CSVUSCensus")){
+            } else if (CensusCsvClass.getName().equals("class censusanalyser.CSVUSCensus")){
                 StreamSupport.stream(csvIterable.spliterator(), false)
-                        .map(IndiaCensusCSV.class::cast)
+                        .map(USCensusCSV.class::cast)
                         .forEach(censusCSV -> csvFileMap.put(censusCSV.state, new CensusDAO(censusCSV)));
             }
             return csvFileMap;

@@ -2,36 +2,37 @@ package censusanalyser;
 
 public class CensusDAO {
 
-    public String state;
     public String stateCode;
-    public int population;
+    public double populationDensity;
+    public double totalArea;
+    public double population;
     public int densityPerSqKm;
     public int areaInSqKm;
-    public double totalArea;
-    public double populationDensity;
+    public String state;
 
-    public CensusDAO(CensusDAO indiaCensusCSV) {
-        state = indiaCensusCSV.state;
-        areaInSqKm = indiaCensusCSV.areaInSqKm;
-        densityPerSqKm = indiaCensusCSV.densityPerSqKm;
-        population = indiaCensusCSV.population;
-    }
-
-    public CensusDAO(IndiaStateCSV indiaStateCSV) {
-        state = indiaStateCSV.state;
-        stateCode = indiaStateCSV.stateCode;
-    }
-    public CensusDAO(USCensusCSV usCensusCSV) {
-        state = usCensusCSV.state;
-        population = usCensusCSV.population;
-        totalArea = usCensusCSV.totalArea;
-        populationDensity = usCensusCSV.populationDensity;
-        stateCode = usCensusCSV.stateId;
+    public CensusDAO(IndiaCensusCSV indiaCensus) {
+        state=indiaCensus.state;
+        areaInSqKm=indiaCensus.areaInSqKm;
+        densityPerSqKm=indiaCensus.densityPerSqKm;
+        population= indiaCensus.population;
     }
 
-    public CensusDAO() {
+    public CensusDAO(USCensusCSV USCensus) {
+        state = USCensus.state;
+        population = USCensus.population;
+        totalArea = USCensus.totalArea;
+        populationDensity = USCensus.populationDensity;
+        stateCode = USCensus.stateId;
     }
 
-    public CensusDAO(IndiaCensusCSV censusCSV) {
+    public IndiaCensusCSV getCSVStateCensus() {
+        return new IndiaCensusCSV(state, (int) population, (int) populationDensity, (int) totalArea);
     }
+
+    public Object getCensusDTO(CensusAnalyser.Country country) {
+        if (country.equals(CensusAnalyser.Country.US))
+            return new IndiaCensusCSV(state, stateCode, population, populationDensity, totalArea);
+        return new IndiaCensusCSV(state, (int) population, (int) populationDensity, (int) totalArea);
+    }
+
 }
