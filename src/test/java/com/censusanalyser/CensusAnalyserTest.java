@@ -17,14 +17,9 @@ public class CensusAnalyserTest {
     public static String US_CENSUS_CSV_FILE_PATH = "./src/test/resources/USCensusData.csv";
 
     @Test
-    public void givenStateCensusCSV_WhenConditionTrue_ReturnNumberOfRecordMatch() {
-        try {
+    public void givenStateCensusCSV_WhenConditionTrue_ReturnNumberOfRecordMatch() throws CensusAnalyserException {
             int numberOfRecords = censusAnalyserIndia.loadCensusData(CSV_CENSUS_FILE_PATH,CSV_STATES_CODE_FILE_PATH);
             Assert.assertEquals(29, numberOfRecords);
-        } catch (CensusAnalyserException e) {
-            e.printStackTrace();
-        }
-
     }
 
     @Test
